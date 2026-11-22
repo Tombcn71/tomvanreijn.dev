@@ -5,16 +5,16 @@ export const SITE_URL = "https://tomvanreijn.dev";
 
 const SEO = {
   nl: {
-    title: "Tom van Reijn | Saas en custom agents met Next.js",
+    title: "Tom van Reijn | Saas en custom agents",
     description:
-      "Ik bouw saas en custom agents voor ondernemers, met Next.js, shadcn/ui, Neon en Vercel. Praat met mijn assistent en vraag wat ik voor jouw bedrijf kan bouwen.",
+      "Software en AI-assistenten die je elke dag gebruikt in je bedrijf.",
     locale: "nl_NL",
     pad: "/",
   },
   en: {
-    title: "Tom van Reijn | SaaS and custom agents built with Next.js",
+    title: "Tom van Reijn | SaaS and custom agents",
     description:
-      "I build SaaS and custom agents for business owners, with Next.js, shadcn/ui, Neon and Vercel. Talk to my assistant and ask what I can build for your business.",
+      "Software and AI assistants you use every day in your business.",
     locale: "en_US",
     pad: "/en",
   },
