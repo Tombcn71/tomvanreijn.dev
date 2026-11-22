@@ -49,10 +49,10 @@ export function Portfolio({ taal }: { taal: Taal }) {
             {donker ? <Sun size={15} /> : <Moon size={15} />}
           </button>
           <div className="flex items-center gap-1 rounded-full border border-border p-0.5 text-xs font-semibold">
-            {(["nl", "en"] as Taal[]).map((k) => (
+            {(["en", "nl"] as Taal[]).map((k) => (
               <Link
                 key={k}
-                href={k === "nl" ? "/" : "/en"}
+                href={k === "nl" ? "/nl" : "/"}
                 hrefLang={k}
                 aria-current={taal === k ? "page" : undefined}
                 className={`rounded-full px-3 py-1 uppercase transition ${
