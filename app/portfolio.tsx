@@ -3,6 +3,7 @@
 import { createElement, useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
+import Link from "next/link";
 import { Mic, Moon, Sun } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,8 +13,7 @@ import { STACK, STACK_EN, TEKSTEN, type Taal } from "@/lib/teksten";
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ?? "";
 const EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@tomvanreijn.dev";
 
-export function Portfolio() {
-  const [taal, setTaal] = useState<Taal>("nl");
+export function Portfolio({ taal }: { taal: Taal }) {
   const [donker, setDonker] = useState(false);
 
   useEffect(() => {
@@ -26,22 +26,6 @@ export function Portfolio() {
     document.documentElement.classList.toggle("dark", nieuw);
     try {
       localStorage.setItem("thema", nieuw ? "donker" : "licht");
-    } catch {}
-  }
-
-  useEffect(() => {
-    try {
-      const opgeslagen = localStorage.getItem("taal");
-      if (opgeslagen === "nl" || opgeslagen === "en") setTaal(opgeslagen);
-      else if (navigator.language.toLowerCase().startsWith("nl") === false) setTaal("en");
-    } catch {}
-  }, []);
-
-  function kies(t: Taal) {
-    setTaal(t);
-    document.documentElement.lang = t;
-    try {
-      localStorage.setItem("taal", t);
     } catch {}
   }
 
@@ -66,16 +50,16 @@ export function Portfolio() {
           </button>
           <div className="flex items-center gap-1 rounded-full border border-border p-0.5 text-xs font-semibold">
             {(["nl", "en"] as Taal[]).map((k) => (
-              <button
+              <Link
                 key={k}
-                type="button"
-                onClick={() => kies(k)}
-                aria-pressed={taal === k}
+                href={k === "nl" ? "/" : "/en"}
+                hrefLang={k}
+                aria-current={taal === k ? "page" : undefined}
                 className={`rounded-full px-3 py-1 uppercase transition ${
                   taal === k ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
                 }`}>
                 {k}
-              </button>
+              </Link>
             ))}
           </div>
           </div>
