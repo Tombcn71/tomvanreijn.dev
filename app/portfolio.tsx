@@ -77,7 +77,7 @@ export function Portfolio({ taal }: { taal: Taal }) {
               <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t.sub}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-full">
-                  <a href="mailto:info@tomvanreijn.dev">
+                  <a href={`mailto:${EMAIL}`}>
                     <Mail /> {t.cta}
                   </a>
                 </Button>
