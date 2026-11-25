@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Moon, Sun } from "lucide-react";
+import { Mail, Moon, Sun } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -77,6 +77,11 @@ export function Portfolio({ taal }: { taal: Taal }) {
               <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t.sub}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-full">
+                  <a href="mailto:tvanreijn@icloud.com">
+                    <Mail /> {t.cta}
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full">
                   <a href="#stack">{t.cta2}</a>
                 </Button>
               </div>
