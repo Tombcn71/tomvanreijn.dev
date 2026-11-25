@@ -1,16 +1,14 @@
 "use client";
 
-import { createElement, useEffect, useState } from "react";
-import Script from "next/script";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mic, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { STACK, STACK_EN, TEKSTEN, type Taal } from "@/lib/teksten";
 
-const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ?? "";
 const EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@tomvanreijn.dev";
 
 export function Portfolio({ taal }: { taal: Taal }) {
@@ -79,11 +77,6 @@ export function Portfolio({ taal }: { taal: Taal }) {
               <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t.sub}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-full">
-                  <a href="#assistent">
-                    <Mic /> {t.cta}
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-full">
                   <a href="#stack">{t.cta2}</a>
                 </Button>
               </div>
@@ -96,35 +89,6 @@ export function Portfolio({ taal }: { taal: Taal }) {
               priority
               className="size-44 rounded-full object-cover grayscale ring-1 ring-border sm:size-56"
             />
-          </div>
-        </section>
-
-        {/* Assistent: de grote plek */}
-        <section id="assistent" className="border-y border-border bg-secondary">
-          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.agentLabel}</p>
-            <h2 className="max-w-2xl text-balance text-3xl font-bold tracking-tight sm:text-5xl">{t.agentKop}</h2>
-            <p className="mt-4 max-w-xl text-muted-foreground">{t.agentTekst}</p>
-
-            <div className="mt-10 grid place-items-center rounded-3xl border border-border bg-background px-6 py-16 text-center">
-              <span className="relative grid size-24 place-items-center rounded-full bg-foreground text-background">
-                <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-foreground/15" />
-                <Mic className="relative size-9" />
-              </span>
-              <p className="mt-6 text-sm text-muted-foreground">
-                {AGENT_ID ? t.agentTekst.split(".")[0] + "." : t.agentBinnenkort}
-              </p>
-              <div className="mt-8 w-full max-w-2xl">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.voorbeeldKop}</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {t.voorbeelden.map((v) => (
-                    <span key={v} className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground">
-                      &ldquo;{v}&rdquo;
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -159,14 +123,6 @@ export function Portfolio({ taal }: { taal: Taal }) {
       <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} tomvanreijn.dev. {t.rechten}
       </footer>
-
-      {/* ElevenLabs-assistent: verschijnt pas als het agent-id is ingevuld. */}
-      {AGENT_ID && (
-        <>
-          {createElement("elevenlabs-convai", { "agent-id": AGENT_ID })}
-          <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" strategy="lazyOnload" />
-        </>
-      )}
     </div>
   );
 }
